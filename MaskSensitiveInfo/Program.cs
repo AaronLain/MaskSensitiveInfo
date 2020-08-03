@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MaskSensitiveInfo
 {
@@ -7,20 +8,15 @@ namespace MaskSensitiveInfo
     {
         static void Mask(string input)
         {
-            List<string> temp = new List<string>();
-            for (int i = 0; i < input.Length; i++)
+            string temp1 = input[^4..^0];
+            List<string> temp2 = new List<string>();
+            int len = input.Length - 4;
+            for (int i = 0; i < len; i++)
             {
-                if (i == 0)
-                {
-                    temp.Add(input[i].ToString());
-                }
-                else if (i != 0)
-                {
-                    temp.Add("*");
-                    
-                }
+                temp2.Add("*");
             }
-            string output = String.Join("", temp);
+            string temp3 = string.Join("", temp2.ToArray());
+            string output = String.Concat(temp3, temp1);
             Console.WriteLine($"{output}");
         }
         static void Main(string[] args)
